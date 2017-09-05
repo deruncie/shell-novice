@@ -38,39 +38,84 @@ and directories (also called "folders"),
 which hold files or other directories.
 
 Several commands are frequently used to create, inspect, rename, and delete files and directories.
-To start exploring them,
-let's open a shell window:
 
-> ## Preparation Magic
->
-> If you type the command:
-> `PS1='$ '`
-> into your shell, followed by pressing the 'enter' key,
-> your window should look like our example in this lesson.  
-> This isn't necessary to follow along (in fact, your prompt may have
-> other helpful information you want to know about).  This is up to you!  
+We'll start by exploring Nelle's file system in Windows (or Mac if you prefer!).
+
+> ## Nelle's file system
+> 
+> Find the `data-shell` folder in the Class directory and drag onto your desktop. Then double click on the folder to open it. You should get a window that looks something like this:
+> 
+> ![Windows folder](../fig/Windows_data-shell.png)
+> 
+> This layout should be pretty familiar to you. Can you identify several folders and files?
+> 
 {: .callout}
+
+In this display, Windows differentiates folders and files with different icons. It also shows you something of the organization of the file system.
+
+Navigate into the `north-pacific-gyre` folder, and then into `2012-07-03`. In this folder, there is a long list of files. Most are called **Text Documents** by Windows. We'll see how Windows determines this in a little bit. 
+
+Two of them: `goodiff` and `goostats` are just called `File`. These are actually programs - the programs that Nelle needs to run on each of these files. You can try to open these. Windows doesn't know how to run them! You can try dragging a file onto the program. But this won't work. Your best bet is to use `notepad` to view their code. But even if you could run them in Windows, how could you process all the files? 
+
+This is a job for the command line!
+
+Before we start, navigate back to the top folder in the directory: `data-shell`. You can do this by clicking on the `data-shell` button in the top bar of the File explorer window.
+
+### Questions:
+
+You should be familiar with the following actions in Windows (or OSX):
+
+1. Organizing files in folders
+2. Moving files between folders
+3. Re-naming files
+4. Copying files
+5. Saving files in a particular folder
+6. Navigating among folders on your computer
+7. Deleting files
+
+> ## Preparing a Bash terminal
+> Now, lets use `Bash` to navigate Nelle's file system, and learn to process these files rapidly.
+{: .callout}
+
+Open a terminal program that runs Bash. 
+
+On Windows: Use `Cygwin`
+
+On Mac: Open `Terminal`
+
+You should have a display that looks something like this:
+
+![Cygwin](../fig/cygwin.png)
+
+It may look a bit different on your computer. You can change the style if you want. The default is usually a black background with white text. I prefer a white background with black text. On `Cygwin`, right-click with your mouse and select `Options..`, and then choose a `Foreground` and `Background` color.
+
+~~~
+IEUser@IE10Win7 ~
+$ 
+~~~
+{: .bash}
+
+The text that you see on your screen is called a **prompt**, which shows us that the shell is waiting for input;
+your shell may use a different character as a prompt and may add information before
+the prompt. When typing commands, either from these lessons or from other sources,
+do not type the prompt, only the commands that follow it.
+
+If you want your prompt to look like mine, type the command: `PS1="$ "` and then hit `Enter`. Now you should see:
 
 ~~~
 $
 ~~~
 {: .bash}
 
-The dollar sign is a **prompt**, which shows us that the shell is waiting for input;
-your shell may use a different character as a prompt and may add information before
-the prompt. When typing commands, either from these lessons or from other sources,
-do not type the prompt, only the commands that follow it.
-
-Type the command `whoami`,
-then press the Enter key (sometimes marked Return) to send the command to the shell.
-The command's output is the ID of the current user,
-i.e.,
-it shows us who the shell thinks we are:
-
-~~~
-$ whoami
-~~~
-{: .bash}
+> ## Commands
+> Type the command `whoami`, then press the Enter key (sometimes marked Return) to send the command to the shell.
+> The command's output is the ID of the current user, i.e., it shows us who the shell thinks we are:
+>
+> ~~~
+> $ whoami
+> ~~~
+> {: .bash}
+{: .callout}
 
 ~~~
 nelle
@@ -85,16 +130,16 @@ More specifically, when we type `whoami` the shell:
 4.  displays a new prompt to tell us that it's ready for more commands.
 
 
-> ## Username Variation
->
-> In this lesson, we have used the username `nelle` (associated
-> with our hypothetical scientist Nelle) in example input and output throughout.  
-> However, when
-> you type this lesson's commands on your computer,
-> you should see and use something different,
-> namely, the username associated with the user account on your computer.  This
-> username will be the output from `whoami`.  In
-> what follows, `nelle` should always be replaced by that username.  
+### Username Variation
+
+In this lesson, we have used the username `nelle` (associated
+with our hypothetical scientist Nelle) in example input and output throughout.  
+However, when
+you type this lesson's commands on your computer,
+you should see and use something different,
+namely, the username associated with the user account on your computer.  This
+username will be the output from `whoami`.  In
+what follows, `nelle` should always be replaced by that username.  
 {: .callout}
 
 > ## Unknown commands
@@ -204,14 +249,17 @@ examples here, this is why we get `/Users/nelle` as our home directory.
 Typically, when you open a new command prompt you will be in
 your home directory to start.  
 
-Now let's learn the command that will let us see the contents of our
-own filesystem.  We can see what's in our home directory by running `ls`,
-which stands for "listing":
-
-~~~
-$ ls
-~~~
-{: .bash}
+> ## ls command
+> 
+> Now let's learn the command that will let us see the contents of our
+> own filesystem.  We can see what's in our home directory by running `ls`,
+> which stands for "listing":
+> 
+> ~~~
+> $ ls
+> ~~~
+> {: .bash}
+{: .callout}
 
 ~~~
 Applications Documents    Library      Music        Public
@@ -386,30 +434,18 @@ information on how to use the commands or programs.
 > {: .error}
 {: .callout}
 
-For more information on how to use `ls` we can type `man ls`.
-`man` is the Unix "manual" command:
-it prints a description of a command and its options,
-and (if you're lucky) provides a few examples of how to use it.
-
-> ## `man` and Git for Windows
->
-> The bash shell provided by Git for Windows does not
-> support the `man` command. Doing a web search for
-> `unix man page COMMAND` (e.g. `unix man page grep`)
-> provides links to numerous copies of the Unix manual
-> pages online.
-> For example, GNU provides links to its
-> [manuals](http://www.gnu.org/manual/manual.html):
-> these include [grep](http://www.gnu.org/software/grep/manual/),
-> and the
-> [core GNU utilities](http://www.gnu.org/software/coreutils/manual/coreutils.html),
-> which covers many commands introduced within this lesson.
+> ## 
+> For more information on how to use `ls` we can type `man ls`.
+> `man` is the Unix "manual" command:
+> it prints a description of a command and its options,
+> and (if you're lucky) provides a few examples of how to use it. 
+> To navigate through the `man` pages,
+> you may use the up and down arrow keys to move line-by-line,
+> or try the "b" and spacebar keys to skip up and down by full page.
+> Quit the `man` pages by typing "q".
+> 
+> Another source for documentation is the internet. Most `man` pages are available on Wikipedia: [ex ls](https://en.wikipedia.org/wiki/Ls). Or just `Google`.
 {: .callout}
-
-To navigate through the `man` pages,
-you may use the up and down arrow keys to move line-by-line,
-or try the "b" and spacebar keys to skip up and down by full page.
-Quit the `man` pages by typing "q".
 
 Here,
 we can see that our home directory contains mostly **sub-directories**.
@@ -420,16 +456,6 @@ without it,
 the shell thinks we're trying to run a command called `ls-F`,
 which doesn't exist.
 
-> ## Parameters vs. Arguments
->
-> According to [Wikipedia](https://en.wikipedia.org/wiki/Parameter_(computer_programming)#Parameters_and_arguments),
-> the terms **argument** and **parameter**
-> mean slightly different things.
-> In practice,
-> however,
-> most people use them interchangeably or inconsistently,
-> so we will too.
-{: .callout}
 
 We can also use `ls` to see the contents of a different directory.  Let's take a
 look at our `Desktop` directory by running `ls -F Desktop`,
@@ -447,6 +473,7 @@ $ ls -F Desktop
 data-shell/
 ~~~
 {: .output}
+
 
 Your output should be a list of all the files and sub-directories on your
 Desktop, including the `data-shell` directory you downloaded at
@@ -601,17 +628,6 @@ Note that in most command line tools, multiple parameters can be combined
 with a single `-` and no spaces between the parameters: `ls -F -a` is 
 equivalent to `ls -Fa`.
 
-> ## Other Hidden Files
->
-> In addition to the hidden directories `..` and `.`, you may also see a file
-> called `.bash_profile`. This file usually contains shell configuration
-> settings. You may also see other files and directories beginning
-> with `.`. These are usually files and directories that are used to configure
-> different programs on your computer. The prefix `.` is used to prevent these
-> configuration files from cluttering the terminal when a standard `ls` command
-> is used.
-{: .callout}
-
 > ## Orthogonality
 >
 > The special names `.` and `..` don't belong to `cd`;
@@ -665,21 +681,24 @@ If we want to move up one level from the data directory, we could use `cd ..`.  
 there is another way to move to any directory, regardless of your
 current location.  
 
-So far, when specifying directory names, or even a directory path (as above),
-we have been using **relative paths**.  When you use a relative path with a command
-like `ls` or `cd`, it tries to find that location  from where we are,
-rather than from the root of the file system.  
-
-However, it is possible to specify the **absolute path** to a directory by
-including its entire path from the root directory, which is indicated by a
-leading slash.  The leading `/` tells the computer to follow the path from
-the root of the file system, so it always refers to exactly one directory,
-no matter where we are when we run the command.
-
-This allows us to move to our `data-shell` directory from anywhere on
-the filesystem (including from inside `data`).  To find the absolute path
-we're looking for, we can use `pwd` and then extract the piece we need
-to move to `data-shell`.  
+> ## Absolute path
+> 
+> So far, when specifying directory names, or even a directory path (as above),
+> we have been using **relative paths**.  When you use a relative path with a command
+> like `ls` or `cd`, it tries to find that location  from where we are,
+> rather than from the root of the file system.  
+> 
+> However, it is possible to specify the **absolute path** to a directory by
+> including its entire path from the root directory, which is indicated by a
+> leading slash.  The leading `/` tells the computer to follow the path from
+> the root of the file system, so it always refers to exactly one directory,
+> no matter where we are when we run the command.
+> 
+> This allows us to move to our `data-shell` directory from anywhere on
+> the filesystem (including from inside `data`).  To find the absolute path
+> we're looking for, we can use `pwd` and then extract the piece we need
+> to move to `data-shell`.  
+{: .callout}
 
 ~~~
 $ pwd
@@ -716,18 +735,13 @@ Run `pwd` and `ls -F` to ensure that we're in the directory we expect.
 
 ### Nelle's Pipeline: Organizing Files
 
-Knowing just this much about files and directories,
-Nelle is ready to organize the files that the protein assay machine will create.
+As we saw, Nelle used a nested folder system to organize the files that the protein assay machine will create.
 First,
-she creates a directory called `north-pacific-gyre`
+she created a directory called `north-pacific-gyre`
 (to remind herself where the data came from).
 Inside that,
-she creates a directory called `2012-07-03`,
+she created a directory called `2012-07-03`,
 which is the date she started processing the samples.
-She used to use names like `conference-paper` and `revised-results`,
-but she found them hard to understand after a couple of years.
-(The final straw was when she found herself creating
-a directory called `revised-revised-results-3`.)
 
 > ## Sorting Output
 >

@@ -26,19 +26,15 @@ a bunch of commands saved in a file is usually called a **shell script**,
 but make no mistake:
 these are actually small programs.
 
-Let's start by going back to `molecules/` and creating a new file, `middle.sh` which will
-become our shell script:
+Open `Notepad++` (or `TextEdit` on Mac) and create a new file (if it doesn't do it automatically). Now let's save this file as `middle.sh` in the `molecules/` folder. This will probably require navigating through the file system - remember that the `data-shell` folder is on the `Desktop`.
 
-~~~
-$ cd molecules
-$ nano middle.sh
-~~~
-{: .bash}
+> ## Windows and Unix text files are not compatible!
+> 
+> One common source of headaches in Bioinformatics is that Windows and Unix-like operating systems encode their text files differently! This means that text files created in Windows often don't work for Unix programs (like Bash).
+> Look carefully at the bottom of the `Notepad++` window for a bar that says `Windows (CR LF)` or `Unix (LF)`. If it says Windows, right-click and select the Unix option. 
+{: .callout} 
 
-The command `nano middle.sh` opens the file `middle.sh` within the text editor "nano"
-(which runs within the shell).
-If the file does not exist, it will be created.
-We can use the text editor to directly edit the file -- we'll simply insert the following line:
+Now, enter the following lines in the file, and save.
 
 ~~~
 head -n 15 octane.pdb | tail -n 5
@@ -50,9 +46,7 @@ it selects lines 11-15 of the file `octane.pdb`.
 Remember, we are *not* running it as a command just yet:
 we are putting the commands in a file.
 
-Then we save the file (`Ctrl-O` in nano),
- and exit the text editor (`Ctrl-X` in nano).
-Check that the directory `molecules` now contains a file called `middle.sh`.
+Now, go back to the Terminal, and check that the directory `molecules` now contains a file called `middle.sh`.
 
 Once we have saved the file,
 we can ask the shell to execute the commands it contains.
@@ -93,12 +87,7 @@ We could edit `middle.sh` each time to change the filename,
 but that would probably take longer than just retyping the command.
 Instead, let's edit `middle.sh` and make it more versatile:
 
-~~~
-$ nano middle.sh
-~~~
-{: .bash}
-
-Now, within "nano", replace the text `octane.pdb` with the special variable called `$1`:
+Go back to `Notepad++` and replace the text `octane.pdb` with the special variable called `$1`:
 
 ~~~
 head -n 15 "$1" | tail -n 5
@@ -151,10 +140,7 @@ though.
 Let's fix that by using the special variables `$2` and `$3` for the
 number of lines to be passed to `head` and `tail` respectively:
 
-~~~
-$ nano middle.sh
-~~~
-{: .bash}
+Go back to `Notepad++` and change to:
 
 ~~~
 head -n "$2" "$1" | tail -n "$3"
@@ -198,10 +184,8 @@ This works,
 but it may take the next person who reads `middle.sh` a moment to figure out what it does.
 We can improve our script by adding some **comments** at the top:
 
-~~~
-$ nano middle.sh
-~~~
-{: .bash}
+
+Go back to `Notepad++` and add:
 
 ~~~
 # Select lines from the middle of a file.
@@ -242,10 +226,8 @@ to handle the case of parameters containing spaces
 (`"$@"` is equivalent to `"$1"` `"$2"` ...)
 Here's an example:
 
-~~~
-$ nano sorted.sh
-~~~
-{: .bash}
+
+In `Notepad++`, enter:
 
 ~~~
 # Sort filenames by their length.
@@ -294,6 +276,20 @@ $ bash sorted.sh *.pdb ../creatures/*.dat
 > it some data interactively. From the outside, though, all we see is it
 > sitting there: the script doesn't appear to do anything.
 {: .callout}
+
+> ## Control, Ctrl, or ^ Key
+>
+> The Control key is also called the "Ctrl" key. There are various ways
+> in which using the Control key may be described. For example, you may
+> see an instruction to press the Control key and, while holding it down,
+> press the X key, described as any of:
+>
+> * `Control-X`
+> * `Control+X`
+> * `Ctrl-X`
+> * `Ctrl+X`
+> * `^X`
+> * `C-x`
 
 
 Suppose we have just run a series of commands that did something useful --- for example,

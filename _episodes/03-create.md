@@ -117,18 +117,11 @@ $ ls -F thesis
 ~~~
 {: .bash}
 
-Let's change our working directory to `thesis` using `cd`,
-then run a text editor called Nano to create a file called `draft.txt`:
-
-~~~
-$ cd thesis
-$ nano draft.txt
-~~~
-{: .bash}
+Open the program `Notepad++` and create a file called `draft.txt` in the `thesis` directory. 
 
 > ## Which Editor?
 >
-> When we say, "`nano` is a text editor," we really do mean "text": it can
+> `Notepad++` is a text editor, which means it can
 > only work with plain character data, not tables, images, or any other
 > human-friendly media. We use it in examples because it is one of the 
 > least complex text editors. However, because of this trait, it may 
@@ -138,9 +131,7 @@ $ nano draft.txt
 > [Vim](http://www.vim.org/) (both of which require more time to learn), 
 > or a graphical editor such as
 > [Gedit](http://projects.gnome.org/gedit/). On Windows, you may wish to
-> use [Notepad++](http://notepad-plus-plus.org/).  Windows also has a built-in
-> editor called `notepad` that can be run from the command line in the same
-> way as `nano` for the purposes of this lesson.  
+> use [Notepad++](http://notepad-plus-plus.org/).  
 >
 > No matter what editor you use, you will need to know where it searches
 > for and saves files. If you start it from the shell, it will (probably)
@@ -151,40 +142,13 @@ $ nano draft.txt
 {: .callout}
 
 Let's type in a few lines of text.
-Once we're happy with our text, we can press `Ctrl-O` (press the Ctrl or Control key and, while
-holding it down, press the O key) to write our data to disk
-(we'll be asked what file we want to save this to:
-press Return to accept the suggested default of `draft.txt`).
+Once we're happy with our text, we click `Save` to write our data to disk.
 
-![Nano in Action](../fig/nano-screenshot.png)
-
-Once our file is saved, we can use `Ctrl-X` to quit the editor and
-return to the shell.
-
-> ## Control, Ctrl, or ^ Key
->
-> The Control key is also called the "Ctrl" key. There are various ways
-> in which using the Control key may be described. For example, you may
-> see an instruction to press the Control key and, while holding it down,
-> press the X key, described as any of:
->
-> * `Control-X`
-> * `Control+X`
-> * `Ctrl-X`
-> * `Ctrl+X`
-> * `^X`
-> * `C-x`
->
-> In nano, along the bottom of the screen you'll see `^G Get Help ^O WriteOut`.
-> This means that you can use `Control-G` to get help and `Control-O` to save your
-> file.
-{: .callout}
-
-`nano` doesn't leave any output on the screen after it exits,
-but `ls` now shows that we have created a file called `draft.txt`:
+Now, return to the Terminal and lets check that the file was created:
 
 ~~~
-$ ls
+$ cd thesis
+$ ls -F
 ~~~
 {: .bash}
 
@@ -192,6 +156,13 @@ $ ls
 draft.txt
 ~~~
 {: .output}
+
+We can also run:
+~~~
+cat draft.txt
+~~~
+
+`cat` is a program that prints text to the screen.
 
 Let's tidy up by running `rm draft.txt`:
 
@@ -707,54 +678,5 @@ but it does find the copy in `thesis` that we didn't delete.
 > > The -i option will prompt before every removal. 
 > > The Unix shell doesn't have a trash bin, so all the files removed will disappear forever. 
 > > By using the -i flag, we have the chance to check that we are deleting only the files that we want to remove.
-> {: .solution}
-{: .challenge}
-
-> ## Copy a folder structure sans files
->
-> You're starting a new experiment, and would like to duplicate the file
-> structure from your previous experiment without the data files so you can
-> add new data.
->
-> Assume that the file structure is in a folder called '2016-05-18-data',
-> which contains folders named 'raw' and 'processed' that contain data files.
-> The goal is to copy the file structure of the `2016-05-18-data` folder
-> into a folder called `2016-05-20-data` and remove the data files from
-> the directory you just created.
->
-> Which of the following set of commands would achieve this objective?
-> What would the other commands do?
->
-> ~~~
-> $ cp -r 2016-05-18-data/ 2016-05-20-data/
-> $ rm 2016-05-20-data/raw/*
-> $ rm 2016-05-20-data/processed/*
-> ~~~
-> {: .bash}
-> ~~~
-> $ rm 2016-05-20-data/raw/*
-> $ rm 2016-05-20-data/processed/*
-> $ cp -r 2016-05-18-data/ 2016-5-20-data/
-> ~~~
-> {: .bash}
-> ~~~
-> $ cp -r 2016-05-18-data/ 2016-05-20-data/
-> $ rm -r -i 2016-05-20-data/
-> ~~~
-> {: .bash}
-> >
-> > ## Solution
-> > The first set of commands achieves this objective.
-> > First we have a recursive copy of a data folder.
-> > Then two `rm` commands which remove all files in the specified directories.
-> > The shell expands the '*' wild card to match all files and subdirectories.
-> >
-> > The second set of commands have the wrong order: 
-> > attempting to delete files which haven't yet been copied,
-> > followed by the recursive copy command which would copy them.
-> >
-> > The third set of commands would achieve the objective, but in a time-consuming way:
-> > the first command copies the directory recursively, but the second command deletes
-> > interactively, prompting for confirmation for each file and directory.
 > {: .solution}
 {: .challenge}

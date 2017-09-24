@@ -8,4 +8,9 @@ do
 done
 
 sleep 2
-head -n 3 $1 | cut -d , -f 1 | sort | uniq > $2
+if [ -z "$2" ]
+ then
+  head -n 3 $1 | cut -d , -f 1 | sort | uniq | cat
+ else
+   head -n 3 $1 | cut -d , -f 1 | sort | uniq > $2
+fi

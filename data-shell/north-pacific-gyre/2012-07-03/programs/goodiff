@@ -2,7 +2,7 @@
 # demo version, just return a random number or "files are identical"
 if [ "$1" == "$2" ]
 then
-    echo "files are identical"
+    echo $1 $2 "files are identical"
 else
-    echo 0.$RANDOM
+    echo $1 $2 0.$RANDOM
 fi

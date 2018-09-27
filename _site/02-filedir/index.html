@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta http-equiv="last-modified" content="2018-09-26 20:00:26 -0700">
+    <meta http-equiv="last-modified" content="2018-09-26 20:04:17 -0700">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- meta "search-domain" used for google site search function google_search() -->
     <meta name="search-domain" value="">
@@ -943,134 +943,6 @@ and so on.
 This is called <strong>tab completion</strong>,
 and we will see it in many other tools as we go on.</p>
 
-<blockquote class="challenge">
-  <h2 id="absolute-vs-relative-paths">Absolute vs Relative Paths</h2>
-
-  <p>Starting from <code class="highlighter-rouge">/Users/amanda/data/</code>,
-which of the following commands could Amanda use to navigate to her home directory,
-which is <code class="highlighter-rouge">/Users/amanda</code>?</p>
-
-  <ol>
-    <li><code class="highlighter-rouge">cd .</code></li>
-    <li><code class="highlighter-rouge">cd /</code></li>
-    <li><code class="highlighter-rouge">cd /home/amanda</code></li>
-    <li><code class="highlighter-rouge">cd ../..</code></li>
-    <li><code class="highlighter-rouge">cd ~</code></li>
-    <li><code class="highlighter-rouge">cd home</code></li>
-    <li><code class="highlighter-rouge">cd ~/data/..</code></li>
-    <li><code class="highlighter-rouge">cd</code></li>
-    <li><code class="highlighter-rouge">cd ..</code></li>
-  </ol>
-
-  <blockquote class="solution">
-    <h2 id="solution">Solution</h2>
-    <ol>
-      <li>No: <code class="highlighter-rouge">.</code> stands for the current directory.</li>
-      <li>No: <code class="highlighter-rouge">/</code> stands for the root directory.</li>
-      <li>No: Amanda’s home directory is <code class="highlighter-rouge">/Users/amanda</code>.</li>
-      <li>No: this goes up two levels, i.e. ends in <code class="highlighter-rouge">/Users</code>.</li>
-      <li>Yes: <code class="highlighter-rouge">~</code> stands for the user’s home directory, in this case <code class="highlighter-rouge">/Users/amanda</code>.</li>
-      <li>No: this would navigate into a directory <code class="highlighter-rouge">home</code> in the current directory if it exists.</li>
-      <li>Yes: unnecessarily complicated, but correct.</li>
-      <li>Yes: shortcut to go back to the user’s home directory.</li>
-      <li>Yes: goes up one level.</li>
-    </ol>
-  </blockquote>
-</blockquote>
-
-<blockquote class="challenge">
-  <h2 id="relative-path-resolution">Relative Path Resolution</h2>
-
-  <p>Using the filesystem diagram below, if <code class="highlighter-rouge">pwd</code> displays <code class="highlighter-rouge">/Users/thing</code>,
-what will <code class="highlighter-rouge">ls ../backup</code> display?</p>
-
-  <ol>
-    <li><code class="highlighter-rouge">../backup: No such file or directory</code></li>
-    <li><code class="highlighter-rouge">2012-12-01 2013-01-08 2013-01-27</code></li>
-    <li><code class="highlighter-rouge">2012-12-01/ 2013-01-08/ 2013-01-27/</code></li>
-    <li><code class="highlighter-rouge">original pnas_final pnas_sub</code></li>
-  </ol>
-
-  <p><img src="../fig/filesystem-challenge.svg" alt="File System for Challenge Questions" /></p>
-
-  <blockquote class="solution">
-    <h2 id="solution-1">Solution</h2>
-    <ol>
-      <li>No: there <em>is</em> a directory <code class="highlighter-rouge">backup</code> in <code class="highlighter-rouge">/Users</code>.</li>
-      <li>No: this is the content of <code class="highlighter-rouge">Users/thing/backup</code>,
-but with <code class="highlighter-rouge">..</code> we asked for one level further up.</li>
-      <li>No: see previous explanation.
-Also, we did not specify <code class="highlighter-rouge">-F</code> to display <code class="highlighter-rouge">/</code> at the end of the directory names.</li>
-      <li>Yes: <code class="highlighter-rouge">../backup</code> refers to <code class="highlighter-rouge">/Users/backup</code>.</li>
-    </ol>
-  </blockquote>
-</blockquote>
-
-<blockquote class="challenge">
-  <h2 id="ls-reading-comprehension"><code class="highlighter-rouge">ls</code> Reading Comprehension</h2>
-
-  <p>Assuming a directory structure as in the above Figure
-(File System for Challenge Questions), if <code class="highlighter-rouge">pwd</code> displays <code class="highlighter-rouge">/Users/backup</code>,
-and <code class="highlighter-rouge">-r</code> tells <code class="highlighter-rouge">ls</code> to display things in reverse order,
-what command will display:</p>
-
-  <div class="output highlighter-rouge"><pre class="highlight"><code>pnas_sub/ pnas_final/ original/
-</code></pre>
-  </div>
-
-  <ol>
-    <li><code class="highlighter-rouge">ls pwd</code></li>
-    <li><code class="highlighter-rouge">ls -r -F</code></li>
-    <li><code class="highlighter-rouge">ls -r -F /Users/backup</code></li>
-    <li>Either #2 or #3 above, but not #1.</li>
-  </ol>
-
-  <blockquote class="solution">
-    <h2 id="solution-2">Solution</h2>
-    <ol>
-      <li>No: <code class="highlighter-rouge">pwd</code> is not the name of a directory.</li>
-      <li>Yes: <code class="highlighter-rouge">ls</code> without directory argument lists files and directories
-in the current directory.</li>
-      <li>Yes: uses the absolute path explicitly.</li>
-      <li>Correct: see explanations above.</li>
-    </ol>
-  </blockquote>
-</blockquote>
-
-<blockquote class="challenge">
-  <h2 id="exploring-more-ls-arguments">Exploring More <code class="highlighter-rouge">ls</code> Arguments</h2>
-
-  <p>What does the command <code class="highlighter-rouge">ls</code> do when used with the <code class="highlighter-rouge">-l</code> and <code class="highlighter-rouge">-h</code> arguments?</p>
-
-  <p>Some of its output is about properties that we do not cover in this lesson (such
-as file permissions and ownership), but the rest should be useful
-nevertheless.</p>
-
-  <blockquote class="solution">
-    <h2 id="solution-3">Solution</h2>
-    <p>The <code class="highlighter-rouge">-l</code> arguments makes <code class="highlighter-rouge">ls</code> use a <strong>l</strong>ong listing format, showing not only
-the file/directory names but also additional information such as the file size
-and the time of its last modification. The <code class="highlighter-rouge">-h</code> argument makes the file size
-“<strong>h</strong>uman readable”, i.e. display something like <code class="highlighter-rouge">5.3K</code> instead of <code class="highlighter-rouge">5369</code>.</p>
-  </blockquote>
-</blockquote>
-
-<blockquote class="challenge">
-  <h2 id="listing-recursively-and-by-time">Listing Recursively and By Time</h2>
-
-  <p>The command <code class="highlighter-rouge">ls -R</code> lists the contents of directories recursively, i.e., lists
-their sub-directories, sub-sub-directories, and so on in alphabetical order
-at each level. The command <code class="highlighter-rouge">ls -t</code> lists things by time of last change, with
-most recently changed files or directories first.
-In what order does <code class="highlighter-rouge">ls -R -t</code> display things? Hint: <code class="highlighter-rouge">ls -l</code> uses a long listing
-format to view timestamps.</p>
-
-  <blockquote class="solution">
-    <h2 id="solution-4">Solution</h2>
-    <p>The directories are listed alphabetical at each level, the files/directories
-in each directory are sorted by time of last change.</p>
-  </blockquote>
-</blockquote>
 
 
 <blockquote class="keypoints">

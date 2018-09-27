@@ -85,7 +85,7 @@ On Mac: Open `Terminal`
 
 You should have a display that looks something like this:
 
-![Git BASH](../fig/cygwin.png)
+![Git BASH](../fig/Cygwin.png)
 
 It may look a bit different on your computer. You can change the style if you want. The default is usually a black background with white text. I prefer a white background with black text. On `Git BASH`, right-click with your mouse and select `Options..`, and then choose a `Foreground` and `Background` color.
 

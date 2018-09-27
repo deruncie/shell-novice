@@ -1,0 +1,22 @@
+while getopts J:r:f option
+do
+    case "$option" in
+    J) Jarg="$OPTARG"
+       shift $((OPTIND));;
+    r) shift $((OPTIND-1));;
+    f) sleep_time=0
+       shift $((OPTIND));;
+    esac
+done
+
+if [ -z $sleep_time ]
+ then
+  sleep_time=2
+fi
+sleep $sleep_time
+if [ -z "$2" ]
+ then
+  head -n 3 $1 | cut -d , -f 1 | sort | uniq | cat
+ else
+   head -n 3 $1 | cut -d , -f 1 | sort | uniq > $2
+fi

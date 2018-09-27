@@ -79,7 +79,7 @@ You should be familiar with the following actions in Windows (or OSX):
 
 Open a terminal program that runs Bash. 
 
-On Windows: Use `Cygwin`
+On Windows: Use `Git BASH`
 
 On Mac: Open `Terminal`
 
@@ -87,7 +87,7 @@ You should have a display that looks something like this:
 
 ![Cygwin](../fig/cygwin.png)
 
-It may look a bit different on your computer. You can change the style if you want. The default is usually a black background with white text. I prefer a white background with black text. On `Cygwin`, right-click with your mouse and select `Options..`, and then choose a `Foreground` and `Background` color.
+It may look a bit different on your computer. You can change the style if you want. The default is usually a black background with white text. I prefer a white background with black text. On `Git BASH`, right-click with your mouse and select `Options..`, and then choose a `Foreground` and `Background` color.
 
 ~~~
 IEUser@IE10Win7 ~
@@ -161,93 +161,11 @@ what follows, `nelle` should always be replaced by that username.
 > 
 > The Shell (Bash) tells you that it cannot find the program `mycommand`
 > because the program you are trying to run does not exist on your computer.
+> (Or, at least it doesn't exist in the folder that Bash is running in right now!)
 > We will touch quite a few commands in the course of this tutorial, but there
 > are actually many more than we can cover here.
 {: .callout}
 
-Next,
-let's find out where we are by running a command called `pwd`
-(which stands for "print working directory").
-At any moment,
-our **current working directory**
-is our current default directory,
-i.e.,
-the directory that the computer assumes we want to run commands in
-unless we explicitly specify something else.
-Here,
-the computer's response is `/Users/nelle`,
-which is Nelle's **home directory**:
-
-~~~
-$ pwd
-~~~
-{: .bash}
-
-~~~
-/Users/nelle
-~~~
-{: .output}
-
-> ## Home Directory Variation
->
-> The home directory path will look different on different operating systems.
-> On Linux it may look like `/home/nelle`,
-> and on Windows it will be similar to `C:\Documents and Settings\nelle` or
-> `C:\Users\nelle`.  
-> (Note that it may look slightly different for different versions of Windows.)
-> In future examples, we've used Mac output as the default - Linux and Windows
-> output may differ slightly, but should be generally similar.  
-{: .callout}
-
-To understand what a "home directory" is,
-let's have a look at how the file system as a whole is organized.  For the
-sake of this example, we'll be
-illustrating the filesystem on our scientist Nelle's computer.  After this
-illustration, you'll be learning commands to explore your own filesystem,
-which will be constructed in a similar way, but not be exactly identical.  
-
-On Nelle's computer, the filesystem looks like this:
-
-![The File System](../fig/filesystem.svg)
-
-At the top is the **root directory**
-that holds everything else.
-We refer to it using a slash character `/` on its own;
-this is the leading slash in `/Users/nelle`.
-
-Inside that directory are several other directories:
-`bin` (which is where some built-in programs are stored),
-`data` (for miscellaneous data files),
-`Users` (where users' personal directories are located),
-`tmp` (for temporary files that don't need to be stored long-term),
-and so on.  
-
-We know that our current working directory `/Users/nelle` is stored inside `/Users`
-because `/Users` is the first part of its name.
-Similarly,
-we know that `/Users` is stored inside the root directory `/`
-because its name begins with `/`.
-
-> ## Slashes
->
-> Notice that there are two meanings for the `/` character.
-> When it appears at the front of a file or directory name,
-> it refers to the root directory. When it appears *inside* a name,
-> it's just a separator.
-{: .callout}
-
-Underneath `/Users`,
-we find one directory for each user with an account on Nelle's machine,
-her colleagues the Mummy and Wolfman.  
-
-![Home Directories](../fig/home-directories.svg)
-
-The Mummy's files are stored in `/Users/imhotep`,
-Wolfman's in `/Users/larry`,
-and Nelle's in `/Users/nelle`.  Because Nelle is the user in our
-examples here, this is why we get `/Users/nelle` as our home directory.  
-Typically, when you open a new command prompt you will be in
-your home directory to start.  
 
 > ## ls command
 > 
@@ -506,7 +424,8 @@ data/               north-pacific-gyre/ pizza.cfg           writing/
 
 Second, we can actually change our location to a different directory, so
 we are no longer located in
-our home directory.  
+our home directory. 
+Doing this requires moving around your **filesystem**. 
 
 The command to change locations is `cd` followed by a
 directory name to change our working directory.
@@ -526,7 +445,92 @@ $ cd data
 {: .bash}
 
 These commands will move us from our home directory onto our Desktop, then into
-the `data-shell` directory, then into the `data` directory.  `cd` doesn't print anything,
+the `data-shell` directory, then into the `data` directory.  `cd` doesn't print anything. But if we type `ls` after, we now see the files and folders in the `data` directory. You can check this by repeating these actions in `Windows Explorer`.
+
+> ## `pwd` command
+> Using `ls`, we can see what our current directory looks like. 
+> If you know your filesystem well, you might be able to identify where your are. 
+> But it's easy to get lost without the address bar at the top of `Windows Explorer` or `Finder`. That's were `pwd comes in:
+{: .callout}
+
+Type:
+~~~
+$ pwd
+~~~
+{: .bash}
+
+~~~
+/Users/nelle/Desktop/data-shell/data
+~~~
+{: .output}
+
+This is a similar display to what we get in an `Explorer` window, except folders are separated by the `/` character.
+
+Let's explore this output for a bit:
+
+> ## Home Directory Variation
+>
+> The home directory path will look different on different operating systems.
+> On Linux it may look like `/home/nelle`,
+> and on Windows it will be similar to `C:\Documents and Settings\nelle` or
+> `C:\Users\nelle`.  
+> (Note that it may look slightly different for different versions of Windows.)
+> In future examples, we've used Mac output as the default - Linux and Windows
+> output may differ slightly, but should be generally similar.  
+{: .callout}
+
+To understand what a "home directory" is,
+let's have a look at how the file system as a whole is organized.  For the
+sake of this example, we'll be
+illustrating the filesystem on our scientist Nelle's computer.  After this
+illustration, you'll be learning commands to explore your own filesystem,
+which will be constructed in a similar way, but not be exactly identical.  
+
+On Nelle's computer, the filesystem looks like this:
+
+![The File System](../fig/filesystem.svg)
+
+At the top is the **root directory**
+that holds everything else.
+We refer to it using a slash character `/` on its own;
+this is the leading slash in `/Users/nelle`.
+
+Inside that directory are several other directories:
+`bin` (which is where some built-in programs are stored),
+`data` (for miscellaneous data files),
+`Users` (where users' personal directories are located),
+`tmp` (for temporary files that don't need to be stored long-term),
+and so on.  
+
+We know that our current working directory `/Users/nelle` is stored inside `/Users`
+because `/Users` is the first part of its name.
+Similarly,
+we know that `/Users` is stored inside the root directory `/`
+because its name begins with `/`.
+
+> ## Slashes
+>
+> Notice that there are two meanings for the `/` character.
+> When it appears at the front of a file or directory name,
+> it refers to the root directory. When it appears *inside* a name,
+> it's just a separator.
+{: .callout}
+
+Underneath `/Users`,
+we find one directory for each user with an account on Nelle's machine,
+her colleagues the Mummy and Wolfman.  
+
+![Home Directories](../fig/home-directories.svg)
+
+The Mummy's files are stored in `/Users/imhotep`,
+Wolfman's in `/Users/larry`,
+and Nelle's in `/Users/nelle`.  Because Nelle is the user in our
+examples here, this is why we get `/Users/nelle` as our home directory.  
+Typically, when you open a new command prompt you will be in
+your home directory to start.  
+
+
+
 but if we run `pwd` after it, we can see that we are now
 in `/Users/nelle/Desktop/data-shell/data`.
 If we run `ls` without arguments now,

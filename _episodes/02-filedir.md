@@ -450,7 +450,7 @@ the `data-shell` directory, then into the `data` directory.  `cd` doesn't print 
 > ## `pwd` command
 > Using `ls`, we can see what our current directory looks like. 
 > If you know your filesystem well, you might be able to identify where your are. 
-> But it's easy to get lost without the address bar at the top of `Windows Explorer` or `Finder`. That's were `pwd comes in:
+> But it's easy to get lost without the address bar at the top of `Windows Explorer` or `Finder`. That's were `pwd` comes in:
 {: .callout}
 
 Type:
@@ -736,6 +736,18 @@ Run `pwd` and `ls -F` to ensure that we're in the directory we expect.
 > that the former brings you *up*, while the latter brings you *back*. You can
 > think of it as the *Last Channel* button on a TV remote.
 {: .callout}
+
+> ## Customizing your Prompt
+> Here's a quick *hack* that can help: change your prompt to always display the path. 
+> 
+> Enter:
+~~~
+PS1='\w\$ '
+~~~
+{: .bash}
+{: .callout}
+
+Now you'll never lose your place!
 
 ### Nelle's Pipeline: Organizing Files
 

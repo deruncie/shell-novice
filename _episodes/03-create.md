@@ -17,7 +17,7 @@ keypoints:
 - "`rm path` removes (deletes) a file."
 - "Use of the Control key may be described in many ways, including `Ctrl-X`, `Control-X`, and `^X`."
 - "The shell does not have a trash bin: once something is deleted, it's really gone."
-- "Depending on the type of work you do, you may need a more powerful text editor than Nano."
+- "Depending on the type of work you do, you may need a more powerful text editor than `Notepad++`. Some good examples are `Atom`, `SublimeText`, and `TextWrangler`."
 ---
 
 We now know how to explore files and directories,
@@ -130,8 +130,7 @@ Open the program `Notepad++` and create a file called `draft.txt` in the `thesis
 > many programmers use [Emacs](http://www.gnu.org/software/emacs/) or
 > [Vim](http://www.vim.org/) (both of which require more time to learn), 
 > or a graphical editor such as
-> [Gedit](http://projects.gnome.org/gedit/). On Windows, you may wish to
-> use [Notepad++](http://notepad-plus-plus.org/).  
+> [Gedit](http://projects.gnome.org/gedit/). On Windows, avoid using **notepad** (the base program). This program saves files in a format that is not always readable in Unix.  
 >
 > No matter what editor you use, you will need to know where it searches
 > for and saves files. If you start it from the shell, it will (probably)
@@ -195,6 +194,8 @@ $ ls
 Let's re-create that file
 and then move up one directory to `/Users/nelle/Desktop/data-shell` using `cd ..`:
 
+First, go back to `Notepad++` and re-save the file as `draft.txt`. The go back to the terminal and type:
+
 ~~~
 $ pwd
 ~~~
@@ -206,7 +207,6 @@ $ pwd
 {: .output}
 
 ~~~
-$ nano draft.txt
 $ ls
 ~~~
 {: .bash}
@@ -263,9 +263,7 @@ $ rm -r thesis
 > at each step for you to confirm the deletion.
 {: .callout}
 
-Let's create that directory and file one more time.
-(Note that this time we're running `nano` with the path `thesis/draft.txt`,
-rather than going into the `thesis` directory and running `nano` on `draft.txt` there.)
+Let's create that directory and file one more time using `Notepad++`.
 
 ~~~
 $ pwd
@@ -279,7 +277,12 @@ $ pwd
 
 ~~~
 $ mkdir thesis
-$ nano thesis/draft.txt
+~~~
+{: .bash}
+
+Create the file in `Notepad++`.
+
+~~~
 $ ls thesis
 ~~~
 {: .bash}
@@ -597,7 +600,7 @@ but it does find the copy in `thesis` that we didn't delete.
 
 > ## Creating Files a Different Way
 >
-> We have seen how to create text files using the `nano` editor.
+> We have seen how to create text files using the `Notepad++` editor.
 > Now, try the following command in your home directory:
 >
 > ~~~
